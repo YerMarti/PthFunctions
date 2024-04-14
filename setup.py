@@ -7,10 +7,11 @@ setup(
     description="A library containing plotting and training functionalities",
     author="Yeray Martínez",
     packages=find_packages(where="PthFunctions"),
-    include_package_data=True,
+    url="https://github.com/Yer-Marti/PthFunctions",
+    license="MIT",
     install_requires=[
         "torch",
-        "tqdm.auto",
+        "tqdm",
         "pandas",
         "matplotlib.pyplot",
     ],
