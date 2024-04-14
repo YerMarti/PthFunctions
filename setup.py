@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 # Define package metadata
 setup(
@@ -6,7 +6,8 @@ setup(
     version="0.0.1",
     description="A library containing plotting and training functionalities",
     author="Yeray Martínez",
-    packages=find_packages(where="PthFunctions"),
+    packages=["pthfunctions"],
+    package_dir={"pthfunctions": "pthfunctions"},
     url="https://github.com/Yer-Marti/PthFunctions",
     license="MIT",
     install_requires=[
