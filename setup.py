@@ -13,6 +13,6 @@ setup(
         "torch",
         "tqdm",
         "pandas",
-        "matplotlib.pyplot",
+        "matplotlib",
     ],
 )
