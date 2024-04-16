@@ -26,13 +26,12 @@ def plot_results_comparison(metric_to_plot: str = None, size: Tuple[float, float
       metric_to_plot: A string representing the metric to plot ("train_loss", "test_loss",
         "train_acc", and "test_acc"). If None, all metrics are plotted.
       size: A tuple of floats representing the size of the plot.
-      **kwargs: Named arguments where keys are model names and values are pandas DataFrames
+      **results: Named arguments where keys are model names and values are pandas DataFrames
         containing training and testing data. Each DataFrame is expected to have columns
         named "train_loss", "test_loss", "train_acc", and "test_acc".
   
   Returns:
       None if the plot is successfully displayed.
-      ValueError if the metric_to_plot is not a valid metric name.
   """
   if results is None:
     raise ValueError("No results to plot. Please provide results to plot.")
