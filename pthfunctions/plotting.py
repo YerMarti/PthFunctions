@@ -18,10 +18,9 @@ def _convert_metric_name(metric_name: str) -> str:
   return ' '.join(words)
 
 
-def plot_results_comparison(metric_to_plot: str = None, size: Tuple[float, float] = (15, 10), **kwargs: pd.DataFrame) -> None:
+def plot_results_comparison(metric_to_plot: str = None, size: Tuple[float, float] = (15, 10), **results: pd.DataFrame) -> None:
   """
-  Plots a comparison of all models' results, including train/test loss and accuracy,
-  given that they trained for the same number of epochs.
+  Plots a comparison of all models' results, including train/test loss and accuracy.
 
   Args:
       metric_to_plot: A string representing the metric to plot ("train_loss", "test_loss",
@@ -35,6 +34,11 @@ def plot_results_comparison(metric_to_plot: str = None, size: Tuple[float, float
       None if the plot is successfully displayed.
       ValueError if the metric_to_plot is not a valid metric name.
   """
+  if results is None:
+    raise ValueError("No results to plot. Please provide results to plot.")
+  elif all(isinstance(sub, type(pd.DataFrame)) for sub in results):
+    raise ValueError("Results must be pandas DataFrames.")
+
   valid_metrics = ["train_loss", "test_loss", "train_acc", "test_acc"]
 
   if metric_to_plot:
@@ -50,7 +54,7 @@ def plot_results_comparison(metric_to_plot: str = None, size: Tuple[float, float
     if len(metrics) > 1:
       plt.subplot(2, 2, graph + 1)
 
-    for model_name, df in kwargs.items():
+    for model_name, df in results.items():
       epochs = range(len(df))
       plt.plot(epochs, df[metric], label=model_name)
 
