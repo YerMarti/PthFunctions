@@ -22,12 +22,12 @@ def plot_results_comparison(results: dict[str, pd.DataFrame], metric_to_plot: st
   Plots a comparison of all models' results, including train/test loss and accuracy.
 
   Args:
+      results: A dictionary with model names as keys and DataFrames with the results as
+        values. The DataFrames should have columns for "train_loss", "test_loss",
+        "train_acc", and "test_acc".
       metric_to_plot: A string representing the metric to plot ("train_loss", "test_loss",
         "train_acc", and "test_acc"). If None, all metrics are plotted.
       size: A tuple of floats representing the size of the plot.
-      **results: Named arguments where keys are model names and values are pandas DataFrames
-        containing training and testing data. Each DataFrame is expected to have columns
-        named "train_loss", "test_loss", "train_acc", and "test_acc".
   
   Returns:
       None if the plot is successfully displayed.
