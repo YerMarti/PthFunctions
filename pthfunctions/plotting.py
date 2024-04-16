@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-from typing import Tuple
 
 
 def _convert_metric_name(metric_name: str) -> str:
@@ -18,7 +17,7 @@ def _convert_metric_name(metric_name: str) -> str:
   return ' '.join(words)
 
 
-def plot_results_comparison(metric_to_plot: str = None, size: Tuple[float, float] = (15, 10), **results: pd.DataFrame) -> None:
+def plot_results_comparison(results: dict[str, pd.DataFrame], metric_to_plot: str = None, size: tuple[float, float] = (15, 10)) -> None:
   """
   Plots a comparison of all models' results, including train/test loss and accuracy.
 
@@ -33,11 +32,6 @@ def plot_results_comparison(metric_to_plot: str = None, size: Tuple[float, float
   Returns:
       None if the plot is successfully displayed.
   """
-  if results is None:
-    raise ValueError("No results to plot. Please provide results to plot.")
-  elif not all(isinstance(sub, type(pd.DataFrame)) for sub in results):
-    raise ValueError("Results must be pandas DataFrames.")
-
   valid_metrics = ["train_loss", "test_loss", "train_acc", "test_acc"]
 
   if metric_to_plot:
