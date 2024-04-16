@@ -46,7 +46,10 @@ def plot_results_comparison(metric_to_plot: str = None, size: Tuple[float, float
 
   plt.figure(figsize=size)
 
-  for metric in metrics:
+  for graph, metric in enumerate(metrics):
+    if len(metrics) > 1:
+      plt.subplot(2, 2, graph + 1)
+
     for model_name, df in kwargs.items():
       epochs = range(len(df))
       plt.plot(epochs, df[metric], label=model_name)
