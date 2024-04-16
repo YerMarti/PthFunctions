@@ -35,7 +35,7 @@ def plot_results_comparison(metric_to_plot: str = None, size: Tuple[float, float
   """
   if results is None:
     raise ValueError("No results to plot. Please provide results to plot.")
-  elif all(isinstance(sub, type(pd.DataFrame)) for sub in results):
+  elif not all(isinstance(sub, type(pd.DataFrame)) for sub in results):
     raise ValueError("Results must be pandas DataFrames.")
 
   valid_metrics = ["train_loss", "test_loss", "train_acc", "test_acc"]
