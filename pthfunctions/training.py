@@ -6,17 +6,17 @@ from tqdm.auto import tqdm
 def train_step(model: torch.nn.Module,
                dataloader: torch.utils.data.DataLoader,
                loss_fn: torch.nn.Module,
-               optimizer:torch.optim.Optimizer,
-               device="cpu"):
+               optimizer: torch.optim.Optimizer,
+               device: str = "cpu"):
   """
-  Trains the model for one epoch using the provided data loader, loss function and optimizer.
+  Trains the model for one epoch using the provided dataloader, loss function and optimizer.
 
   Parameters:
-        model: A torch.nn.Module model.
-        dataloader: A torch.utils.data.DataLoader with the training data.
-        loss_fn: A torch.nn.Module loss function.
-        optimizer: A torch.optim.Optimizer optimizer.
-        device: A string specifying the device to use (e.g., "cpu" or "cuda").
+        model: The model to be trained.
+        dataloader: Dataloader containing the training data.
+        loss_fn: Loss function to be used in the training step.
+        optimizer: Optimizer to be used in the training step.
+        device: String specifying the device to be used in the training step (e.g., "cpu" or "cuda").
   """
   # Put the model in train mode
   model.train()
@@ -60,13 +60,13 @@ def test_step(model: torch.nn.Module,
               loss_fn: torch.nn.Module,
               device="cpu"):
   """
-  Tests the model for one epoch using the provided data loader and loss function.
+  Tests the model for one epoch using the provided dataloader and loss function.
   
   Parameters:
-        model: A torch.nn.Module model.
-        dataloader: A torch.utils.data.DataLoader with the testing data.
-        loss_fn: A torch.nn.Module loss function.
-        device: A string specifying the device to use (e.g., "cpu" or "cuda").
+        model: The model to be tested.
+        dataloader: DataLoader containing the testing data.
+        loss_fn: Loss function to be used in the testing step.
+        device: String specifying the device to be used in the testing step (e.g., "cpu" or "cuda").
   """
   # Put model in eval mode
   model.eval()
@@ -99,23 +99,23 @@ def test_step(model: torch.nn.Module,
 
 
 def train(model: torch.nn.Module,
-          train_dataloader,
-          test_dataloader,
-          optimizer,
-          loss_fn: torch.nn.Module = torch.nn.CrossEntropyLoss(),
+          train_dataloader: torch.utils.data.DataLoader,
+          test_dataloader: torch.utils.data.DataLoader,
+          loss_fn: torch.nn.Module,
+          optimizer: torch.optim.Optimizer,
           epochs: int = 5,
-          device="cpu") -> pd.DataFrame:
+          device: str = "cpu") -> pd.DataFrame:
   """
-  Trains a model using the provided training and testing data loaders, optimizer, loss function, and number of epochs.
+  Trains a model using the provided training and testing dataloaders, optimizer, loss function, and number of epochs.
   
   Parameters:
-        model: A torch.nn.Module model.
-        train_dataloader: A torch.utils.data.DataLoader with the training data.
-        test_dataloader: A torch.utils.data.DataLoader with the testing data.
-        optimizer: A torch.optim.Optimizer optimizer.
-        loss_fn: A torch.nn.Module loss function (default is CrossEntropyLoss).
-        epochs: An integer specifying the number of epochs to train the model (default is 5).
-        device: A string specifying the device to use (e.g., "cpu" or "cuda").
+        model: The model in which perform the training loop.
+        train_dataloader: DataLoader with the training data.
+        test_dataloader: DataLoader with the testing data.
+        loss_fn: Loss function to be used in the training loop.
+        optimizer: Optimizer to be used in the training loop.
+        epochs: Number of epochs to train the model.
+        device: String specifying the device to use in the training loop (e.g., "cpu" or "cuda").
   
   Returns:
         A pandas DataFrame containing the training and testing results for each epoch.
