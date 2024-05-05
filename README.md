@@ -42,11 +42,8 @@ Plots a comparison of all models' results, including train/test loss and accurac
 
 | Parameters | Description |
 | --- | --- |
-| results: dict[str, pd.DataFrame] | A dictionary with model names as keys and DataFrames with the results as
-        values. The DataFrames should have columns for "train_loss", "test_loss",
-        "train_acc", and "test_acc". |
-| metric_to_plot: str, ddefault=None | A string representing the metric to plot ("train_loss", "test_loss",
-        "train_acc", and "test_acc"). If None, all metrics are plotted. |
+| results: dict[str, pd.DataFrame] | A dictionary with model names as keys and DataFrames with the results as values. The DataFrames should have columns for "train_loss", "test_loss", "train_acc", and "test_acc". |
+| metric_to_plot: str, ddefault=None | A string representing the metric to plot ("train_loss", "test_loss", "train_acc", and "test_acc"). If None, all metrics are plotted. |
 | size: tuple[float, float], default=(15, 10) | A tuple of floats representing the size of the plot. |
 
 ### Training module
