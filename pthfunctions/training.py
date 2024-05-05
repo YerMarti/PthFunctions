@@ -104,7 +104,8 @@ def train(model: torch.nn.Module,
           loss_fn: torch.nn.Module,
           optimizer: torch.optim.Optimizer,
           epochs: int = 5,
-          device: str = "cpu") -> pd.DataFrame:
+          device: str = "cpu",
+          console_ratio: int = 0) -> pd.DataFrame:
   """
   Trains a model using the provided training and testing dataloaders, optimizer, loss function, and number of epochs.
   
@@ -116,6 +117,7 @@ def train(model: torch.nn.Module,
         optimizer: Optimizer to be used in the training loop.
         epochs: Number of epochs to train the model.
         device: String specifying the device to use in the training loop (e.g., "cpu" or "cuda").
+        console_ratio: Ratio of epochs to print out the training and testing results.
   
   Returns:
         A pandas DataFrame containing the training and testing results for each epoch.
@@ -127,9 +129,17 @@ def train(model: torch.nn.Module,
              "train_acc": [],
              "test_loss": [],
              "test_acc": []})
+  
+  console_ratio = max(0, min(console_ratio, 1)) # Ensure the console_ratio is between 0 and 1
 
   # 2. Loop through training and testing steps for a number of epochs
   for epoch in tqdm(range(epochs)):
+
+    console_out = console_ratio > 0 and epoch % (1 / console_ratio) == 0
+
+    if console_out:
+      print(f"-----------\nEpoch {epoch}")
+
     train_loss, train_acc = train_step(model=model,
                                        dataloader=train_dataloader,
                                        loss_fn=loss_fn,
@@ -141,8 +151,9 @@ def train(model: torch.nn.Module,
                                     loss_fn=loss_fn,
                                     device=device)
 
-    # 3. Print out what's happening
-    print(f"Epoch: {epoch} | Train loss: {train_loss:.4f} | Train acc: {train_acc:.4f} | Test loss: {test_loss:.4f} | Test acc: {test_acc:.4f}")
+    # 3. Print out results
+    if console_out:
+      print(f"Train loss: {train_loss:.4f} | Train acc: {train_acc:.4f} | Test loss: {test_loss:.4f} | Test acc: {test_acc:.4f}")
 
     # 4. Update results dictionary
     results.loc[len(results.index)] = [epoch, train_loss, train_acc, test_loss, test_acc] # Adds a new row of data to the dataframe

@@ -82,7 +82,7 @@ Tests the model for one epoch using the provided dataloader and loss function.
 #### pthfunctions.training.train
 
 ```
-def train(model, train_dataloader, test_dataloader, optimizer, loss_fn, epochs=5, device="cpu")
+def train(model, train_dataloader, test_dataloader, optimizer, loss_fn, epochs=5, device="cpu", console_ratio=0)
 ```
 
 Trains a model using the provided training and testing dataloaders, optimizer, loss function, and number of epochs.
@@ -96,6 +96,7 @@ Trains a model using the provided training and testing dataloaders, optimizer, l
 | optimizer: torch.optim.Optimizer | Optimizer to be used in the training loop. |
 | epochs: int, default=5 | Number of epochs to train the model. |
 | device: str, default="cpu" | String specifying the device to use in the training loop (e.g., "cpu" or "cuda"). |
+| console_ratio: int, default=0 | Ratio of epochs to print out the training and testing results. |
 
 | Returns | Description |
 | --- | --- |
