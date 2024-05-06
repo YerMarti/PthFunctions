@@ -1,0 +1,6 @@
+sphinx
+sphinx-rtd-theme
+pandas
+tqdm
+torch
+matplotlib
