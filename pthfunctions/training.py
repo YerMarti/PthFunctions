@@ -11,12 +11,12 @@ def train_step(model: torch.nn.Module,
   """
   Trains the model for one epoch using the provided dataloader, loss function and optimizer.
 
-  Parameters:
-        model: The model to be trained.
-        dataloader: Dataloader containing the training data.
-        loss_fn: Loss function to be used in the training step.
-        optimizer: Optimizer to be used in the training step.
-        device: String specifying the device to be used in the training step (e.g., "cpu" or "cuda").
+  Args:
+      :model: The model to be trained.
+      :dataloader: Dataloader containing the training data.
+      :loss_fn: Loss function to be used in the training step.
+      :optimizer: Optimizer to be used in the training step.
+      :device: String specifying the device to be used in the training step (e.g., "cpu" or "cuda").
   """
   # Put the model in train mode
   model.train()
@@ -62,11 +62,11 @@ def test_step(model: torch.nn.Module,
   """
   Tests the model for one epoch using the provided dataloader and loss function.
   
-  Parameters:
-        model: The model to be tested.
-        dataloader: DataLoader containing the testing data.
-        loss_fn: Loss function to be used in the testing step.
-        device: String specifying the device to be used in the testing step (e.g., "cpu" or "cuda").
+  Args:
+      :model: The model to be tested.
+      :dataloader: DataLoader containing the testing data.
+      :loss_fn: Loss function to be used in the testing step.
+      :device: String specifying the device to be used in the testing step (e.g., "cpu" or "cuda").
   """
   # Put model in eval mode
   model.eval()
@@ -109,18 +109,18 @@ def train(model: torch.nn.Module,
   """
   Trains a model using the provided training and testing dataloaders, optimizer, loss function, and number of epochs.
   
-  Parameters:
-        model: The model in which perform the training loop.
-        train_dataloader: DataLoader with the training data.
-        test_dataloader: DataLoader with the testing data.
-        loss_fn: Loss function to be used in the training loop.
-        optimizer: Optimizer to be used in the training loop.
-        epochs: Number of epochs to train the model.
-        device: String specifying the device to use in the training loop (e.g., "cpu" or "cuda").
-        console_ratio: Ratio of epochs to print out the training and testing results.
+  Args:
+      :model: The model in which perform the training loop.
+      :train_dataloader: DataLoader with the training data.
+      :test_dataloader: DataLoader with the testing data.
+      :loss_fn: Loss function to be used in the training loop.
+      :optimizer: Optimizer to be used in the training loop.
+      :epochs: Number of epochs to train the model.
+      :device: String specifying the device to use in the training loop (e.g., "cpu" or "cuda").
+      :console_ratio: Ratio of epochs to print out the training and testing results.
   
   Returns:
-        A pandas DataFrame containing the training and testing results for each epoch.
+      :result: DataFrame containing the training and testing results for each epoch.
   """
 
   # 1. Create empty results dictionary

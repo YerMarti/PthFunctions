@@ -7,30 +7,27 @@ def _convert_metric_name(metric_name: str) -> str:
   Converts a metric name to a format with spaces and capitalized first letters.
 
   Args:
-      metric_name: A string representing the metric name (e.g., "test_loss").
+      :metric_name: A string representing the metric name (e.g., "test_loss").
 
   Returns:
-      A string representing the metric name in a better format (e.g., "Test Loss").
+      :metric_converted: A string representing the metric name in a better format (e.g., "Test Loss").
   """
   words = metric_name.split('_')
   words = [word.capitalize() for word in words]
   return ' '.join(words)
 
 
-def plot_results_comparison(results: dict[str, pd.DataFrame], metric_to_plot: str = None, size: tuple[float, float] = (15, 10)) -> None:
+def plot_results_comparison(results: dict[str, pd.DataFrame], metric_to_plot: str = None, size: tuple[float, float] = (15, 10)):
   """
   Plots a comparison of all models' results, including train/test loss and accuracy.
 
   Args:
-      results: A dictionary with model names as keys and DataFrames with the results as
-        values. The DataFrames should have columns for "train_loss", "test_loss",
-        "train_acc", and "test_acc".
-      metric_to_plot: A string representing the metric to plot ("train_loss", "test_loss",
-        "train_acc", and "test_acc"). If None, all metrics are plotted.
-      size: A tuple of floats representing the size of the plot.
-  
-  Returns:
-      None if the plot is successfully displayed.
+      :results: A dictionary with model names as keys and DataFrames with
+        the results as values. The DataFrames should have columns for
+        "train_loss", "test_loss", "train_acc", and "test_acc".
+      :metric_to_plot: A string representing the metric to plot ("train_loss",
+        "test_loss", "train_acc", and "test_acc"). If None, all metrics are plotted.
+      :size: A tuple of floats representing the size of the plot.
   """
   valid_metrics = ["train_loss", "test_loss", "train_acc", "test_acc"]
 
